@@ -2,6 +2,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {setAuth, setUser} from '../../redux/action'
 import AuthServices from "../API/authServices";
+import company from "../Company/Company";
 
 // import d from '../../../public/img/logo.gpeg'
 const TopBar = () =>{
@@ -42,7 +43,7 @@ const TopBar = () =>{
 									?
 									<>
 										<li className='nav-link px-4'>
-											Company
+											<Link to={'/company'}>Company</Link>
 										</li>
 										<li className='nav-link px-4'>
 											User to Company

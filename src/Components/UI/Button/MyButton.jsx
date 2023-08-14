@@ -1,21 +1,14 @@
 import React from 'react';
 
-const MyButton = ({children, onClick,...props}) => {
+const MyButton = ({children, onClickAction,...props}) => {
     return (
         <div {...props}>
-            <button className="btn btn-outline-danger" onClick>
+            <button className="btn btn-outline-danger"
+                    onClick={(e)=>{ e.preventDefault(); onClickAction()}}>
                 {children}
             </button>
         </div>
     );
 };
 
-
-// const MyButton = ({children, ...props}) => {
-//     return (
-//         <button {...props}>
-//             {children}
-//         </button>
-//     );
-// };
 export default MyButton;

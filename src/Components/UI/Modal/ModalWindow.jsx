@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal, Button } from 'react-bootstrap'; // если вы используете react-bootstrap
+import React from "react";
+import {Modal} from 'react-bootstrap'; // если вы используете react-bootstrap
 
 const ModalWindow = ({title, body, closeAction}) => {
     return (

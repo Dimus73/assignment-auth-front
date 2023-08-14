@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -10,6 +9,7 @@ import {PageNoFound} from "./Components/PageNoFound";
 import HomePage from "./Components/Homepage";
 import Registry from "./Components/Auth/Registry";
 import Login from "./Components/Auth/Login";
+import Company from "./Components/Company/Company";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path='login'                 element={<Login />} />
             <Route path='registry'              element={<Registry />} />
 
-            {/*<Route path='catalog/ingredients'   element={<Ingredients />} />*/}
+            <Route path='company'   element={<Company />} />
             {/*<Route path='catalog/equipment'     element={<Equipment />} />*/}
 
             {/*<Route path='recipe/list'           element={<RecipeList/>} />*/}
