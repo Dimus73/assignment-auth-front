@@ -55,8 +55,8 @@ const Login = () => {
 			{modalMessage &&
 				<ModalWindow title={'Error'} body={modalMessage} closeAction={clearAllMessages}/>}
 			<WindowsSection title={'Enter email and password'} action={logInFunction} buttonName={'Sign in'}>
-				<InputElement placeholder={'Email'} type={'text'} element={login} changeElement={setLogin}/>
-				<InputElement placeholder={'Password'} type={'password'} element={password} changeElement={setPassword}/>
+				<InputElement i={1} placeholder={'Email'} type={'text'} element={login} changeElement={setLogin}/>
+				<InputElement i={2} placeholder={'Password'} type={'password'} element={password} changeElement={setPassword}/>
 			</WindowsSection>
 		</>
 	)

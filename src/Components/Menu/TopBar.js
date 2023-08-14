@@ -36,23 +36,23 @@ const TopBar = () =>{
 
 						<div className="collapse navbar-collapse justify-content-md-start" id="navbarsExample10">
 							<ul className="navbar-nav">
-								<li className='nav-link px-4'>
-									<Link to={'/'}>Home</Link>
+								<li>
+									<Link to={'/'} className='nav-link px-4'>Home</Link>
 								</li>
 								{ isAuth
 									?
 									<>
-										<li className='nav-link px-4'>
-											<Link to={'/company'}>Company</Link>
+										<li>
+											<Link to={'/company'} className='nav-link px-4'>Company</Link>
 										</li>
-										<li className='nav-link px-4'>
-											User to Company
+										<li>
+											<Link to={'add-users'} className='nav-link px-4'>User to Company</Link>
 										</li>
 									</>
 									:
 									''
 								}
-								<li>
+								<li >
 									<Link to="/registry" className='nav-link px-4'>New User</Link>
 								</li>
 							</ul>

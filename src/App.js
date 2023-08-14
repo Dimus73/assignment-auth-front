@@ -14,7 +14,8 @@ import Login from "./Components/Auth/Login";
 import Company from "./Components/Company/Company";
 import {useEffect} from "react";
 import AuthServices from "./Components/API/authServices";
-import {setAuth, setUser} from "./redux/action";
+import {setAuth, setLoader, setUser} from "./redux/action";
+import AddUsers from "./Components/AddUsers/AddUsers";
 
 function App() {
     const dispatch = useDispatch();
@@ -29,7 +30,6 @@ function App() {
                 try {
                     const response = await AuthServices.checkAuth();
                     dispatch(setAuth(true));
-                    console.log('In APP:= id, email=>', response.data.id, response.data.email)
                     dispatch(setUser(
                         {
                             id : response.data.id,
@@ -38,7 +38,10 @@ function App() {
                     )
                     localStorage.setItem( 'token', response.data.access_token )
                     sessionStorage.removeItem('fs')
+                    dispatch(setLoader(false))
                 } catch (e) {
+                    dispatch(setLoader(false))
+                    sessionStorage.removeItem('fs')
                     alert('Global error with the database')
                     console.log(e)
                 }
@@ -56,7 +59,7 @@ function App() {
             <Route path='registry'              element={<Registry />} />
 
             <Route path='company'   element={<Company />} />
-            <Route path='add-users'     element={<Equipment />} />
+            <Route path='add-users'     element={<AddUsers />} />
 
             {/*<Route path='recipe/list'           element={<RecipeList/>} />*/}
             {/*<Route path='recipe/:id'            element={<RecipeEdit/>} />*/}

@@ -2,8 +2,9 @@ import {useEffect, useState} from "react";
 import MyButton from "../Button/MyButton";
 import AddFormInput from "./AddFormInput";
 import {tableFieldType} from "../Table/tableFieldType";
+import AddFormSelect from "./AddFormSelect";
 
-function AddForm ({currentItem, placeholder, actionButton, inputType}) {
+function AddForm ({currentItem, choiceList, placeholder, nameInChoiceList, actionButton, inputType}) {
 
     const [item, setItem] = useState({})
 
@@ -12,7 +13,7 @@ function AddForm ({currentItem, placeholder, actionButton, inputType}) {
     },[currentItem])
 
     const pushAddButton = async ( ) => {
-        console.log('In PushButton =>', item);
+        // console.log('In PushButton =>', item);
         await actionButton(item);
         setItem('')
 
@@ -30,7 +31,7 @@ function AddForm ({currentItem, placeholder, actionButton, inputType}) {
                             inputType === tableFieldType.ENTER_FIELD ?
                                 <AddFormInput item={item} setItem={setItem} placeholder={placeholder}/>
                                 :
-                                ''
+                                <AddFormSelect item={item} choiceList={choiceList} nameInChoiceList={nameInChoiceList} setItem={setItem} placeholder={placeholder}/>
                         }
                     </div>
                     <div  className='col'>

@@ -17,18 +17,23 @@ api.interceptors.response.use( (config) => {
     return config
     } , async (error) => {
     console.log('*************** Interseptor request', error)
-    console.log('*************** ----------- request', error.response.status)
-        const originalRequest = error.config;
-        if (error.response.status == 401 && !originalRequest.isRetry ) {
-            originalRequest.isRetry=true
-            try {
-                const response = await AuthServices.checkAuth();
-                console.log('------------Try to refresh =>', response)
-                localStorage.setItem('token', response.data.access_token)
-                return api.request(originalRequest)
-            } catch (e) {
-                console.log('User not authorise')
-            }
+
+    if (!('response' in error)){
+        throw error
+    }
+    const originalRequest = error.config;
+    if (error.response.status == 401 && !originalRequest.isRetry ) {
+        originalRequest.isRetry=true
+        // console.log('!!!!!!!!!!!!!!!!!!!')
+        try {
+            const response = await AuthServices.checkAuth();
+            localStorage.setItem('token', response.data.access_token)
+            return api.request(originalRequest)
+        } catch (e) {
+            console.log('+++++++++++++User not authorise')
         }
+    } else {
+        throw error
+    }
     })
 export default api

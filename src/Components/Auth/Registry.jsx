@@ -56,9 +56,9 @@ const Registry = () => {
 			{modalMessage &&
 				<ModalWindow title={modalTitle} body={modalMessage} closeAction={clearAllMessages}/>}
 			<WindowsSection title={'Registry new user'} action={addUser} buttonName={'Registry'}>
-				<InputElement placeholder={'Email'} type={'text'} element={email} changeElement={setEmail}/>
-				<InputElement placeholder={'Password 1'} type={'password'} element={password1} changeElement={setPassword1}/>
-				<InputElement placeholder={'Password 2'} type={'password'} element={password2} changeElement={setPassword2}/>
+				<InputElement i={1} placeholder={'Email'} type={'text'} element={email} changeElement={setEmail}/>
+				<InputElement i={2} placeholder={'Password 1'} type={'password'} element={password1} changeElement={setPassword1}/>
+				<InputElement i={3} placeholder={'Password 2'} type={'password'} element={password2} changeElement={setPassword2}/>
 			</WindowsSection>
 		</>
 	)

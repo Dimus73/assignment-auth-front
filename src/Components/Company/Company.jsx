@@ -9,13 +9,12 @@ import ModalWindow from "../UI/Modal/ModalWindow";
 import {tableFieldType} from "../UI/Table/tableFieldType";
 import BaseTable from "../UI/Table/BaseTable";
 import EnterSection from "./UI/EnterSection";
-import CompanyAddForm from "../UI/AddForm/AddForm";
+import AddForm from "../UI/AddForm/AddForm";
 
 
 const Company = () => {
 
     const [companies, setCompanies ] = useState([]);
-    // const [newCompany, setNewCompany ] = useState([]);
     const [modalMessage, setModalMessage] = useState('');
     const user = useSelector (state => state.user)
 
@@ -68,7 +67,7 @@ const Company = () => {
     ])
 
     const actionAddCompany = async (name) =>{
-        await addCompany(user.id,name)
+        await addCompany(user.id, name)
     }
 
     const clearAllMessages = () => {
@@ -95,7 +94,7 @@ const Company = () => {
                         />
                     </TableSection>
                     <EnterSection>
-                        <CompanyAddForm
+                        <AddForm
                             currentItem={''}
                             placeholder={'Enter new company name'}
                             actionButton={actionAddCompany}
