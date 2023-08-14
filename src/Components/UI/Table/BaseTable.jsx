@@ -4,8 +4,8 @@ import RowOfTable from "./RowOfTable";
 
 const BaseTable = ({fieldsList, elementsList, catalogActionButton}) => {
     // console.log('Before return =>', fieldsList);
-    console.log('fieldsList=>', fieldsList)
-    console.log('List=>', elementsList)
+    // console.log('fieldsList=>', fieldsList)
+    // console.log('List=>', elementsList)
     return (
         <div>
             <table className='table'>

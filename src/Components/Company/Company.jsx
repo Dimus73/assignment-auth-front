@@ -20,14 +20,14 @@ const Company = () => {
     const user = useSelector (state => state.user)
 
     const [loadCompanies, loadCompaniesMessageError, loadCompaniesClearMessageError] =
-        useFetching (async () => {
-            const response = await CompanyServices.ownerOrgList(user.id);
+        useFetching (async (id) => {
+            const response = await CompanyServices.ownerOrgList(id);
             setCompanies(response.data);
         })
 
     const [addCompany, addCompanyMessageError, addCompanyClearMessageError] =
-        useFetching (async (name) => {
-            const response = await CompanyServices.createOrg(user.id, name);
+        useFetching (async (id, name) => {
+            const response = await CompanyServices.createOrg(id, name);
             setCompanies(response.data);
         })
 
@@ -48,12 +48,15 @@ const Company = () => {
         },
     ]
 
+
     useEffect(()=>{
         const t = async () => {
-            await loadCompanies()
+            if (user.id && user.email){
+                await loadCompanies(user.id)
+            }
         }
         t()
-    },[])
+    },[user.id, user.email])
 
     useEffect(() => {
         setModalMessage(
@@ -63,6 +66,10 @@ const Company = () => {
     },[loadCompaniesMessageError,
         addCompanyMessageError
     ])
+
+    const actionAddCompany = async (name) =>{
+        await addCompany(user.id,name)
+    }
 
     const clearAllMessages = () => {
         if (loadCompaniesMessageError) loadCompaniesClearMessageError();
@@ -91,7 +98,7 @@ const Company = () => {
                         <CompanyAddForm
                             currentItem={''}
                             placeholder={'Enter new company name'}
-                            actionButton={addCompany}
+                            actionButton={actionAddCompany}
                             inputType={tableFieldType.ENTER_FIELD}
                         />
                     </EnterSection>

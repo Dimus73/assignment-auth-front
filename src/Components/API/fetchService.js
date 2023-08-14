@@ -1,4 +1,5 @@
 import axios from 'axios'
+import AuthServices from "./authServices";
 
 export const API_URL = 'http://localhost:5000'
 
@@ -12,4 +13,22 @@ api.interceptors.request.use((config)=>{
     return config
 })
 
+api.interceptors.response.use( (config) => {
+    return config
+    } , async (error) => {
+    console.log('*************** Interseptor request', error)
+    console.log('*************** ----------- request', error.response.status)
+        const originalRequest = error.config;
+        if (error.response.status == 401 && !originalRequest.isRetry ) {
+            originalRequest.isRetry=true
+            try {
+                const response = await AuthServices.checkAuth();
+                console.log('------------Try to refresh =>', response)
+                localStorage.setItem('token', response.data.access_token)
+                return api.request(originalRequest)
+            } catch (e) {
+                console.log('User not authorise')
+            }
+        }
+    })
 export default api

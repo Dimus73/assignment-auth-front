@@ -13,7 +13,7 @@ export const useFetching = (callBack) => {
         } catch (e) {
             // console.log('Hook error report:', e)
             // console.log('Hook error report detail:', e.response.data.message)
-            setMessageError(e.message + '. (DETAIL: ' + e.response.data.message + ')');
+            setMessageError(e.message + '. (DETAIL: ' + e.response.data.msg + ')' );
         } finally {
             dispatch(setLoader(false));
         }
